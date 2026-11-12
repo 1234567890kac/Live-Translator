@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Translate a conversation as you speak, right in your browser."
+    />
+    <meta name="theme-color" content="#f5f6f2" />
+    <title>Lingua — Live Translator</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Lingua home">
+          <span class="brand-mark" aria-hidden="true">L</span>
+          <span>lingua</span>
+        </a>
+        <div class="privacy-note">
+          <span class="privacy-dot" aria-hidden="true"></span>
+          <span>Browser-powered voice</span>
+        </div>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <p class="eyebrow">WORDS WITHOUT WALLS</p>
+          <h1 id="page-title">Be understood,<br /><span>wherever you go.</span></h1>
+          <p class="intro-copy">
+            Speak or type naturally. Your translation is just a moment away.
+          </p>
+        </section>
+
+        <section class="translator-card" aria-label="Live translator">
+          <div class="language-bar">
+            <label class="language-select">
+              <span class="select-label">FROM</span>
+              <select id="source-language" aria-label="Translate from">
+                <option value="en-US">English</option>
+                <option value="fr-FR">French</option>
+                <option value="es-ES">Spanish</option>
+                <option value="de-DE">German</option>
+                <option value="it-IT">Italian</option>
+                <option value="pt-PT">Portuguese</option>
+                <option value="ja-JP">Japanese</option>
+                <option value="zh-CN">Chinese</option>
+                <option value="ar-SA">Arabic</option>
+                <option value="ru-RU">Russian</option>
+                <option value="nl-NL">Dutch</option>
+              </select>
+            </label>
+            <button class="swap-button" id="swap-languages" type="button" aria-label="Swap languages">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 7h13m0 0-3-3m3 3-3 3M17 17H4m0 0 3 3m-3-3 3-3" />
+              </svg>
+            </button>
+            <label class="language-select target-select">
+              <span class="select-label">TO</span>
+              <select id="target-language" aria-label="Translate to">
+                <option value="fr-FR" selected>French</option>
+                <option value="en-US">English</option>
+                <option value="es-ES">Spanish</option>
+                <option value="de-DE">German</option>
+                <option value="it-IT">Italian</option>
+                <option value="pt-PT">Portuguese</option>
+                <option value="ja-JP">Japanese</option>
+                <option value="zh-CN">Chinese</option>
+                <option value="ar-SA">Arabic</option>
+                <option value="ru-RU">Russian</option>
+                <option value="nl-NL">Dutch</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="translation-panels">
+            <div class="translation-panel source-panel">
+              <div class="panel-heading">
+                <span>Your words</span>
+                <span class="live-indicator" id="listening-indicator" hidden>
+                  <span></span> Listening
+                </span>
+              </div>
+              <textarea
+                id="source-text"
+                maxlength="500"
+                placeholder="Type something or start speaking…"
+                aria-label="Text to translate"
+                spellcheck="true"
+              ></textarea>
+              <div class="panel-footer">
+                <span class="char-count" id="char-count">0 / 500</span>
+                <button class="mic-button" id="microphone" type="button" aria-label="Start speaking">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="9" y="3" width="6" height="12" rx="3" />
+                    <path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21m-3 0h6" />
+                  </svg>
+                  <span id="mic-label">Speak</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="translation-panel result-panel" aria-live="polite">
+              <div class="panel-heading">
+                <span>Your translation</span>
+                <span class="result-status" id="result-status">Ready when you are</span>
+              </div>
+              <div class="translated-text" id="translated-text" aria-label="Translation">
+                <span class="placeholder-text">Your translation will appear here.</span>
+              </div>
+              <div class="panel-footer result-footer">
+                <span class="result-error" id="result-error" role="status"></span>
+                <div class="result-actions">
+                  <button class="icon-button" id="copy-result" type="button" aria-label="Copy translation" disabled>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <rect x="8" y="8" width="12" height="12" rx="2" />
+                      <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" />
+                    </svg>
+                  </button>
+                  <button class="icon-button" id="speak-result" type="button" aria-label="Play translation" disabled>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M11 5 6 9H3v6h3l5 4zM15.5 8.5a5 5 0 0 1 0 7m3-10a9 9 0 0 1 0 13" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footnote">
+            <span class="sparkle" aria-hidden="true">✦</span>
+            <span>Translation powered by MyMemory · Your text is sent securely for translation.</span>
+          </div>
+        </section>
+
+        <p class="support-note" id="support-note">
+          Works best in Chrome or Edge. You can always type instead of speaking.
+        </p>
+      </main>
+      <footer class="site-footer">
+        <span>LINGUA</span>
+        <span>Make every conversation count.</span>
+      </footer>
+    </div>
+    <script type="module" src="/src/app.js"></script>
+  </body>
+</html>
